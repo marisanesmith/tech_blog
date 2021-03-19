@@ -12,7 +12,7 @@
 ## Project Overview
 
 ## Application
-[E-Commerce Video Link](https://drive.google.com/file/d/1-imu-rP9sOSufuA75wNergu142ZKp1Nn/view)
+[Tech Blog Heroku Link](https://drive.google.com/file/d/1-imu-rP9sOSufuA75wNergu142ZKp1Nn/view)
 
 ## Installation
 
