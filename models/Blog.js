@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Comment extends Model {}
+class Blog extends Model {}
 
-Comment.init(
+Blog.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,11 +11,17 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    comment: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-          length: [5-500]
+          length: [4-50]
+      }
+    },
+    content: {
+      type: DataTypes.STRING,
+      validate: {
+          length: [10-2000]
       }
     },
     date_created: {
@@ -40,4 +46,4 @@ Comment.init(
   }
 );
 
-module.exports = Comment;
+module.exports = Blog;
