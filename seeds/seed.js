@@ -1,4 +1,6 @@
 const sequelize = require('../config/connection');
+const { User, Blog, Comment } = require('../models');
+
 const seedComment = require('./commentData.json');
 const seedBlog = require('./blogData.json');
 const seedUser = require('./userData.json')
