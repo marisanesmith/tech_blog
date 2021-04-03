@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 router.get('/post', async (req, res) => {
   let blogData = await Blog.findAll({
   });
-  const blog = blogData.map((post) => blog.get({ plain: true }));
+  const blog = blogData.map((blog) => blog.get({ plain: true }));
   res.render('post', { blog, logged_in: req.session.logged_in});
 });
 
@@ -52,6 +52,11 @@ router.get('/signup', async (req, res) => {
   })
 });
 
+router.get('/newpost', withAuth, async(req, res) => {
+  res.render('newpost', {
+    title: 'New Post'
+  })
+});
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
@@ -72,7 +77,6 @@ router.get('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
-  // res.render('logout');
 });
 
 module.exports = router;
