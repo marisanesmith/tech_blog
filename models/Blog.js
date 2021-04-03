@@ -11,17 +11,17 @@ Blog.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-          length: [4-50]
+          len: [4,50]
       }
     },
     content: {
       type: DataTypes.STRING,
       validate: {
-          length: [10-2000]
+          len: [10,2000]
       }
     },
     date_created: {

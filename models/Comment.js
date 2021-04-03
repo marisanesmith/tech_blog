@@ -19,7 +19,7 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-          length: [5-500]
+          len: [5,500]
       }
     },
     date_created: {
@@ -47,7 +47,7 @@ Comment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'blog',
+    modelName: 'comment',
   }
 );
 
