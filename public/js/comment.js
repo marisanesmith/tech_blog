@@ -49,3 +49,7 @@ const displayCommentInput = async (event) => {
   document
   .querySelector('.saveCommentBtn')
   .addEventListener('click', saveNewComment);
+
+  ////////// ADD EDIT COMMENT //////
+
+/////////// ADD DELETE COMMENT ///////
