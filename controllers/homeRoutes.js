@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/createpost', async (req, res) => {
+router.get('/post', async (req, res) => {
   let postData = await Post.findAll({
   });
   const post = postData.map((post) => post.get({ plain: true }));
@@ -34,7 +34,7 @@ router.get('/createpost', async (req, res) => {
   res.render('dashboard', { post, logged_in: req.session.logged_in});
 });
 
-router.get('createpost/:id', async (req, res) => {
+router.get('post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
