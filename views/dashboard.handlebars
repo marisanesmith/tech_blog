@@ -1,8 +1,7 @@
-<h4 class="display-3">Welcome, {{name}}</h4>
-<br>
+
 {{!-- POST BODY --}}
 
-<body id="postContainer">
+<body id="grey-background">
     {{#each posts as |post|}}
     <div id="dash-style" class="container">
         <div id="white-background" class="post-style">
@@ -38,13 +37,11 @@
             {{/if}}
 
             {{!-- EDIT POST --}}
-            <hr>
-            <a class="button-style btn margin-btm commentBtn" data-id="{{post.id}}"><i class="far fa-comment"></i> Leave a Comment</a>
-            <a class="button-style btn margin-btm editBtn" data-id="{{post.id}}"><i class="fas fa-pencil-alt"></i> Edit
-                Post</a>
-            <a class="button-style btn margin-btm deleteBtn" data-id="{{post.id}}"><i class="fas fa-trash-alt"></i>
-                Remove Post</a>
-
+        <div class="row">
+            <a class="button-style btn margin-btm commentBtn" data-id="{{post.id}}"> Leave a Comment</a>
+            <a class="button-style btn margin-btm editBtn" data-id="{{post.id}}">Edit Post</a>
+            <a class="button-style btn margin-btm deleteBtn" data-id="{{post.id}}">Remove Post</a>
+        </div>
             {{!-- COMMENT RELATED --}}
             <div id="idToComment" class="row comment-container hide commentContainer">
 
