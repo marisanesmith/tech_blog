@@ -5,6 +5,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    h1 {
+        font-family: 'Roboto Mono', monospace;
+        text-transform: uppercase;
+        text-align: center;
+        color: #414F5B;
+      }
+      h3 {
+        font-family: 'Roboto Mono', monospace;
+        text-transform: uppercase;
+        padding: 10px;
+      }
+       h5 {
+        font-family: 'Roboto Mono', monospace;
+        text-transform: uppercase;
+        padding: 20px;
+        color: black;
+        text-align: center;
+      }
+      a {
+        color: black;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+      a:hover {
+        color: #998675;
+      }
+      p {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        text-align: center;
+      }
+      nav {
+        background-color: #414F5B;
+      }
+      .line {
+        color: #95ACA7;
+        width: 200px;
+      }
+      .button-style {
+        color:white;
+        background-color: #998675;
+        border-radius: 4px;
+        font-family: 'Lora', serif;
+        letter-spacing: 1.5px;
+        text-align: center;
+        margin-right: 20px;
+      }
+      .button-style:hover {
+        background-color:#95ACA7;
+        color: black;
+      }
+      .button-style:active {
+        transform: translateY(-5px);
+        transition: 2sec;
+      }
+      .nav-style {
+        background-color: black !important;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 100px;
+      }
+      .margin-btm {
+        margin-bottom: 40px;
+        margin-left: 265px;
+       justify-content: center;
+      }
+      #footer-style {
+        background-color: #414F5B;
+        margin-bottom: 0px;
+      }
+      #footer-style2 {
+        margin-top: 0px;
+      }
+      #footer-style3 {
+        margin-top: 15px;
+        font-family: 'Roboto Mono', monospace;
+      }
+      #blog-content {
+        margin-right: 50px;
+        margin-left: 50px
+      }
+      .post-style {
+        padding: 5px;
+        font-family: 'Playfair Display', serif; 
+      }
+      #dash-style {
+        margin-bottom: 50px;
+      }
+      #login-style {
+        padding: 50px;
+        margin-bottom: 100px;
+       background-color: white;
+      }
+      #grey-background {
+        background-color: #E5DACE;
+      }
+      #white-background {
+        background-color: white;
+        padding: 20px;
+      }
+    </style>
+  </style>
   <title>Tech Blog</title>
   {{!-- <link rel="stylesheet" href="/css/jass.css"> --}}
 </head>
@@ -17,7 +120,7 @@
       <a href="../" class="button-style btn" id="homeBtn">Home</a>
       <a href="../dashboard" class="button-style btn" id="dashBtn">Dashboard</a>
       <a href="../createpost" class="button-style btn" id="postBtn">Create Post</a>
-      <a href="../posts" class="button-style btn" id="postBtn">Posts</a>
+      {{!-- <a href="../posts" class="button-style btn" id="postBtn">Posts</a> --}}
       <a class="button-style btn" id="logoutBtn">Logout</a>
     </nav>
    {{else}}
@@ -35,8 +138,26 @@
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>
- <footer>
-      
+ <!--  F O O T E R -->
+<footer id="footer-style" class="page-footer"> 
+    
+    <div class="row">
+      <div class="col l6 s12 center">
+        <h3>Tech Blog</h3>
+      </div>
+      <div id="footer-style3" class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+            <li><a class="grey-text text-lighten-3" href="../dashboard">Dashboard</a></li>
+            <li><a class="grey-text text-lighten-3" href="../login">Login</a></li>
+          </ul>
+      </div>
+    </div>
+    <div id="footer-style2"class="row">
+     <div class="s12 white-text center">
+          © 2021 tech blog
+    </div>
+    </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
