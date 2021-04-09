@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { User, Comment, Blog } = require('../models');
-const withAuth = require('../utils/auth');
+const { User, Comment, Post } = require('../models');
+// const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
@@ -8,15 +8,16 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/post', async (req, res) => {
-  let blogData = await Blog.findAll({
+  let postData = await Post.findAll({
   });
-  const blog = blogData.map((blog) => blog.get({ plain: true }));
-  res.render('post', { blog, logged_in: req.session.logged_in});
+  const post = postData.map((post) => post.get({ plain: true }));
+  console.log("this is my latest" + post);
+  res.render('dashboard', { post, logged_in: req.session.logged_in});
 });
 
 
-router.get('/dashboard', withAuth, async (req, res) => {
-  const commentData = await Blog.findAll({
+router.get('/dashboard', async (req, res) => {
+  const commentData = await Post.findAll({
     include: [
       {
         model: Comment,
@@ -25,7 +26,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     ]
   });
 
-  const blogData = await Blog.findAll({
+  const postData = await Post.findAll({
     // sort: [Post.date_created, 'DESC'],
     include: [
       {
@@ -40,10 +41,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }).catch((err) => {
     res.json(err);
   });
-  const blog = blogData.map((post) => blog.get({ plain: true }));
+  const post = postData.map((post) => post.get({ plain: true }));
   const comments = commentData.map((comment) => comment.get({ plain: true}));
-  console.log(posts);
-  res.render('dashboard', { blog, logged_in: req.session.logged_in, comments});
+  console.log(post);
+  res.render('dashboard', { post, logged_in: req.session.logged_in, comments});
 });
 
 router.get('/signup', async (req, res) => {
@@ -52,11 +53,17 @@ router.get('/signup', async (req, res) => {
   })
 });
 
-router.get('/newpost', withAuth, async(req, res) => {
-  res.render('newpost', {
-    title: 'New Post'
+router.get('/createpost', async (req, res) => {
+  res.render('createpost', {
+    title: 'Create Post'
   })
 });
+
+// router.get('/post', async (req, res) => {
+//   res.render('post', {
+//     title: 'Post'
+//   })
+// });
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {

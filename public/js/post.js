@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
     const content = document.querySelector('#blogDescription').value.trim();
   
     if (title && content) {
-      const response = await fetch(`/api/blog`, {
+      const response = await fetch(`/api/post`, {
         method: 'POST',
         body: JSON.stringify({ title: title, content: content }),
         headers: {
@@ -25,5 +25,5 @@ const newFormHandler = async (event) => {
   };
 
   document
-  .querySelector('.save')
+  .querySelector('#save')
   .addEventListener('click', newFormHandler);

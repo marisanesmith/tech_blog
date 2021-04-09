@@ -1,7 +1,7 @@
 const displayCommentInput = async (event) => {
     console.log('here');
     event.preventDefault();
-    var commentBtn = document.querySelector('.commentBtn');
+    var commentBtn = document.querySelector('#commentBtn');
     var commentContainer = document.querySelector('.commentContainer');
   
     commentContainer.classList.remove('hide');
@@ -10,7 +10,7 @@ const displayCommentInput = async (event) => {
   };
   
   document
-  .querySelector('.commentBtn')
+  .querySelector('#commentBtn')
   .addEventListener('click', displayCommentInput);
   
   /////////////////////////////////////////////////////////
