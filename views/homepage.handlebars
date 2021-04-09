@@ -1,63 +1,20 @@
 
-
-{{!-- POST BODY --}}
-<body id="grey-background">
-    {{#each posts as |post|}}
-    <div id="dash-style" class="container">
-        <div id="white-background" class="post-style">
-            <div class="row post-style">
-                <div class="col-8">
-                    <h5>{{post.title}}</h5>
-                    <hr class="line">
-                    <p>Posted by {{user.name}} on {{format_date post.date_created}}</p>
-                </div>
-            </div>
-            <div class="row blog_content">
-                <p>{{post.content}}</p>
-                <hr>
-            </div>
-
-            {{log post}}
-
-            {{!-- COMMENT BODY --}}
-            {{#if post.comments}}
-            {{#each post.comments as |comment|}}
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-12">
-                        <p>Comment by {{{comment.user_id}}} on {{{format_date comment.date_created}}}</p>
-                    </div>
-                </div> 
-                <div class="row blog_content"> 
-                    {{log comment}}
-                    <p>{{{comment.comment}}}</p>
-
-                </div>
-            </div> 
-            {{/each}}
-            {{/if}}
-            <br>
-            {{!-- EDIT POST BUTTONS--}}
-            <button type="submit" id="commentBtn" class="button-style btn margin-btm">Leave a Comment</button>
-            <button type="submit" class="button-style btn margin-btm editBtn" data-id="{{post.id}}">Edit Post</button>
-            <button type="submit" class="button-style btn margin-btm deleteBtn" data-id="{{post.id}}">Delete Post</button>
-
-            {{!-- ADD COMMENT --}}
-            <div class="row comment-container hide commentContainer">
-                <div class="input-group">
-                    <span class="input-group-text">Comment:</span>
-                    <textarea id="commentText" class="form-control" aria-label="With textarea"></textarea>
-                </div> 
-
-                {{!-- SAVE COMMENT --}}
-                <div>
-                    <button type="submit" class="button-style btn saveCommentBtn margin-btm" data-id="{{post.id}}">Submit</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</body>
+<!-- Loop over each object in the posts array -->
+{{#each posts as |post| }}
+<div>
+  <div class="row blue-grey darken-2">
+    <h2>
+      <a href="/post/{{post.id}}">{{post.title}}</a>
+    </h2>
+     
+  </div>
+  <div class="row blue-grey darken-2">
+      <p>
+        {{post.content}}
+      </p>
+       <p><strong>by {{post.user.firstName}} {{post.user.lastName}} on {{format_date post.date_created}}</strong></p>
+  </div>
+</div>
 {{/each}}
-<script src="/js/comment.js"></script>
+
+<script src="/js/post.js"></script>

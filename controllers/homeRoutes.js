@@ -2,18 +2,59 @@ const router = require('express').Router();
 const { User, Comment, Post } = require('../models');
 // const withAuth = require('../utils/auth');
 
+// router.get('/', async (req, res) => {
+//   // Send the rendered Handlebars.js template back as the response
+//   res.render('homepage');
+// });
+
 router.get('/', async (req, res) => {
-  // Send the rendered Handlebars.js template back as the response
-  res.render('homepage');
+  try {
+      const postData = await Post.findAll({
+          include: [
+              {   model: User,
+                  attributes: ['name']
+              },
+          ],
+      });
+      const posts = postData.map((post) => post.get({ plain: true }));
+
+      res.render('homepage', { 
+          posts,
+          logged_in: req.session.logged_in
+       });
+  } catch (err) {res.status(500).json(err);
+  }
 });
 
-router.get('/post', async (req, res) => {
+router.get('/createpost', async (req, res) => {
   let postData = await Post.findAll({
   });
   const post = postData.map((post) => post.get({ plain: true }));
   console.log("this is my latest" + post);
   res.render('dashboard', { post, logged_in: req.session.logged_in});
 });
+
+router.get('createpost/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User 
+        },
+        {
+          model: Comment
+        }
+      ]
+    });
+    if (!postData) res.status(400).json({ message: "Post not found with this ID."});
+
+    const post = postData.get({ plain: true });
+
+    res.render('editPost', { post, name: req.session.user_name, logged_in: req.session.logged_in});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 
 router.get('/dashboard', async (req, res) => {
@@ -41,10 +82,10 @@ router.get('/dashboard', async (req, res) => {
   }).catch((err) => {
     res.json(err);
   });
-  const post = postData.map((post) => post.get({ plain: true }));
+  const posts = postData.map((post) => post.get({ plain: true }));
   const comments = commentData.map((comment) => comment.get({ plain: true}));
-  console.log(post);
-  res.render('dashboard', { post, logged_in: req.session.logged_in, comments});
+  console.log(posts);
+  res.render('dashboard', { posts, logged_in: req.session.logged_in, comments});
 });
 
 router.get('/signup', async (req, res) => {

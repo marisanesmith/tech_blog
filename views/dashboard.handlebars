@@ -1,9 +1,8 @@
-<h2> Welcome to the Tech Blog</h2>
-
-{{log post}}
-
+<h4 class="display-3">Welcome, {{name}}</h4>
+<br>
 {{!-- POST BODY --}}
-<body id="grey-background">
+
+<body id="postContainer">
     {{#each posts as |post|}}
     <div id="dash-style" class="container">
         <div id="white-background" class="post-style">
@@ -28,32 +27,62 @@
                     <div class="col-12">
                         <p>Comment by {{{comment.user_id}}} on {{{format_date comment.date_created}}}</p>
                     </div>
-                </div> 
-                <div class="row blog_content"> 
+                </div>
+                <div class="row blog_content">
                     {{log comment}}
                     <p>{{{comment.comment}}}</p>
 
                 </div>
-            </div> 
+            </div>
             {{/each}}
             {{/if}}
-            <br>
 
-            {{!-- ADD COMMENT --}}
-            <div class="row comment-container hide commentContainer">
+            {{!-- EDIT POST --}}
+            <hr>
+            <a class="button-style btn margin-btm commentBtn" data-id="{{post.id}}"><i class="far fa-comment"></i> Leave a Comment</a>
+            <a class="button-style btn margin-btm editBtn" data-id="{{post.id}}"><i class="fas fa-pencil-alt"></i> Edit
+                Post</a>
+            <a class="button-style btn margin-btm deleteBtn" data-id="{{post.id}}"><i class="fas fa-trash-alt"></i>
+                Remove Post</a>
+
+            {{!-- COMMENT RELATED --}}
+            <div id="idToComment" class="row comment-container hide commentContainer">
+
                 <div class="input-group">
                     <span class="input-group-text">Comment:</span>
                     <textarea id="commentText" class="form-control" aria-label="With textarea"></textarea>
-                </div> 
+
+                </div>
 
                 {{!-- SAVE COMMENT --}}
                 <div>
-                    <button type="submit" class="button-style btn saveCommentBtn margin-btm" data-id="{{post.id}}">Submit</button>
+                    <button type="submit" class="button-style btn saveCommentBtn margin-btm"
+                        data-id="{{post.id}}">SUBMIT</button>
                 </div>
+            </div>
+
+            {{!-- EDIT POST --}}
+            <div id="editPostDiv{{post.id}}" class="row hide editContainer">
+
+                <form>
+                    <div class="input-group">
+                        <span class="input-group-text">Edit your post:</span>
+                        <textarea id="editPost{{post.id}}" class="form-control" aria-label="With textarea"></textarea>
+
+                    </div>
+
+                    {{!-- SAVE EDIT --}}
+                    <div>
+                        <button type="submit" class="button-style btn saveEditBtn margin-btm"
+                            data-id="{{post.id}}">SUBMIT</button>
+                    </div>
+                </form>
             </div>
 
         </div>
     </div>
+    <br>
+    <br>
 </body>
 {{/each}}
-<script src="/js/post.js"></script>
+<script src="/js/comment.js"></script>
