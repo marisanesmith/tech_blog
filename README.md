@@ -15,6 +15,10 @@
 [Tech Blog Heroku Link](https://drive.google.com/file/d/1-imu-rP9sOSufuA75wNergu142ZKp1Nn/view)
 
 ![Tech Blog Home Page](public/images/techBlogHome.png)
+![Tech Blog Post Page](public/images/techBlogPost.png)
+![Tech Blog Dashboard Page](public/images/techBlogDash.png)
+
+
 
 ## Installation
 
