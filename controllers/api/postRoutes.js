@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
+const withAuth = require('../../utils/auth')
 
 router.post('/', async(req, res) => {
   if (!req.session.logged_in) {
@@ -21,20 +22,38 @@ router.post('/', async(req, res) => {
   }
 });
 
-// router.post('/', async (req, res) => {
-//   try {
-//     const newBlog = await Blog.create({
-//       ...req.body,
-//       user_id: req.session.user_id,
-//     });
+router.put('/:id', async (req, res) => {
+  console.log(req.session.user_id);
 
-//     res.status(200).json(newBlog);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
+  try {
+    const updatedPost = {
+      content: req.body.post,
+      user_id: req.session.user_id
+    }
 
-router.delete('/:id', async (req, res) => {
+    console.log(req.body);
+
+    const editedPost = await Post.update( updatedPost, {
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id
+      },
+    });
+  
+  if (!editedPost) {
+    res.status(404).json({ message: 'No post found with this id!'});
+    return;
+  }
+
+  res.status(200).json(editedPost);
+} catch (err) {
+  console.log(err);
+  res.status(500).json(err);
+}
+});
+
+router.delete('/:id', withAuth, async (req, res) => {
+  console.log(req.session.user_id);
   try {
     const postData = await Post.destroy({
       where: {

@@ -17,7 +17,7 @@
                 <hr>
             </div>
 
-            {{!-- COMMENT BODY --}}
+            {{!-- COMMENT SECTION --}}
             {{#if post.comments}}
             {{#each post.comments as |comment|}}
             <div class="container">
@@ -36,7 +36,7 @@
             {{/each}}
             {{/if}}
 
-            {{!-- EDIT POST --}}
+            {{!-- EDIT/DELETE POST --}}
         <div class="row">
             <a class="button-style btn margin-btm commentBtn" data-id="{{post.id}}"> Leave a Comment</a>
             <a class="button-style btn margin-btm editBtn" data-id="{{post.id}}">Edit Post</a>

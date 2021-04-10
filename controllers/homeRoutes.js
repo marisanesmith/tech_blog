@@ -56,36 +56,34 @@ router.get('post/:id', async (req, res) => {
   }
 })
 
-
 router.get('/dashboard', async (req, res) => {
-  const commentData = await Post.findAll({
-    include: [
+  try {
+    const userData = await User.findByPk(
+      req.session.user_id,
       {
-        model: Comment,
-        attributes: ['comment', 'user_id', 'post_id','date_created'],
-      },
-    ]
-  });
+        attributes: {
+          exclude: ['password']
+        },
+        include: [
+          {
+            model: Post
+          }
+        ]
+      });
 
-  const postData = await Post.findAll({
-    // sort: [Post.date_created, 'DESC'],
-    include: [
+    const user = userData.get({
+      plain: true
+    });
+
+    res.render('dashboard',
       {
-        model: User,
-        attributes: ['name'],
-      },
-      {
-        model: Comment,
-        attributes: ['comment', 'user_id', 'post_id', 'date_created'],
-      },
-    ]
-  }).catch((err) => {
-    res.json(err);
-  });
-  const posts = postData.map((post) => post.get({ plain: true }));
-  const comments = commentData.map((comment) => comment.get({ plain: true}));
-  console.log(posts);
-  res.render('dashboard', { posts, logged_in: req.session.logged_in, comments});
+        ...user,
+        logged_in: true
+      });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get('/signup', async (req, res) => {
