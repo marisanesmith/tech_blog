@@ -14,6 +14,8 @@
 ## Application
 [Tech Blog Heroku Link](https://drive.google.com/file/d/1-imu-rP9sOSufuA75wNergu142ZKp1Nn/view)
 
+![Tech Blog Home Page](public/images/techBlogHome.png)
+
 ## Installation
 
 To properly run this application you will need to install the following dependencies: 
