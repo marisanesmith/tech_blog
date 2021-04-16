@@ -1,5 +1,5 @@
 var commentBtn = document.querySelector('.commentBtn');
-var editBtn = document.querySelector('.editBtn');
+// var editBtn = document.querySelector('.editBtn');
 var deleteBtn = document.querySelector('.deleteBtn');
 var commentContainer = document.querySelector('.commentContainer');
 
@@ -36,6 +36,8 @@ console.log(id);
 
 
   if (comment && id ) {
+
+    //check that it isnt just comment
     const response = await fetch('/api/comments', {
       method: 'POST',
       body: JSON.stringify({ comment, post_id: id }),
@@ -59,74 +61,77 @@ document
 
     /////////////////////////////////////////////////////////
 
-    const displayEditInput = async (event) => {
-      event.preventDefault();
+    // const displayEditInput = async (event) => {
+    //   event.preventDefault();
 
-      const id = event.target.getAttribute('data-id');
+    //   const id = event.target.getAttribute('data-id');
 
-      console.log("post_id " + id);
+    //   console.log("post_id " + id);
       
-      if (id) {
-      var id_to_edit = document.querySelector("#editPostDiv" + id);
-      var editBtn = document.querySelector('.editBtn');
+    //   if (id) {
+    //   var id_to_edit = document.querySelector("#editPostDiv" + id);
+    //   var editBtn = document.querySelector('.editBtn');
       // var editContainer = document.querySelector('.editContainer');
     
-      id_to_edit.classList.remove('hide');
-      editBtn.classList.add('hide');
-      commentBtn.classList.add('hide');
-      deleteBtn.classList.add('hide');
+    //   id_to_edit.classList.remove('hide');
+    //   editBtn.classList.add('hide');
+    //   commentBtn.classList.add('hide');
+    //   deleteBtn.classList.add('hide');
 
-      console.log('editBtn pressed');
-      }
-    };
+    //   console.log('editBtn pressed');
+    //   }
+    // };
     
-    document
-    .querySelectorAll('.editBtn')
-    .forEach(element => element.addEventListener('click', displayEditInput));
+    // document
+    // .querySelectorAll('.editBtn')
+    // .forEach(element => element.addEventListener('click', displayEditInput));
     
     /////////////////////////////////////////////////////////
 
-    const editPost = async (event) => {
-      event.preventDefault();
+    // const editPost = async (event) => {
+    //   event.preventDefault();
     
-      const id = event.target.getAttribute('data-id');
-      const content = document.getElementById('editPost'+ id).value;
-      const data = {content:content};
+    //   const id = event.target.getAttribute('data-id');
+    //   const content = document.getElementById('editPost'+ id).value;
+    //   const data = {content:content};
 
-      console.log(id);
-      console.log(content);
+    //   console.log(id);
+    //   console.log(content);
           
-      if (id) {
-        const response = await fetch(`/api/posts/${id}`, {
-          method: 'PUT',
-          body: JSON.stringify(data)
-      });
+    //   if (id) {
+    //     const response = await fetch(`/api/posts/${id}`, {
+    //       method: 'PUT',
+    //       body: JSON.stringify(data)
+    //   });
 
-      if (response.ok) {
-          document.location.replace('/dashboard');
-          alert('Post updated')
-      } else {
-          alert('Failed to update post')
-      }
-          }
-    };
+    //   if (response.ok) {
+    //       document.location.replace('/dashboard');
+    //       alert('Post updated')
+    //   } else {
+    //       alert('Failed to update post')
+    //   }
+    //       }
+    // };
     
-    document
-    .querySelectorAll('.saveEditBtn')
-    .forEach(element => element.addEventListener('click', editPost));
+    // document
+    // .querySelectorAll('.saveEditBtn')
+    // .forEach(element => element.addEventListener('click', editPost));
 
     // DELETE COMMENT
 
-    const delButtonHandler = async (event) => {
+    const deletePost = async (event) => {
+      event.preventDefault();
+      console.log("delete button pressed");
       const id = event.target.getAttribute('data-id');
       
       if (id) {
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`/api/post/${id}`, {
           method: 'DELETE',
         });
     
         if (response.ok) {
           document.location.replace('/dashboard');
+          alert("post deleted")
         } else {
           alert('Failed to delete post');
         }
@@ -134,5 +139,5 @@ document
     };
     document
       .querySelector('.deleteBtn')
-      .addEventListener('click', delButtonHandler);
+      .addEventListener('click', deletePost);
 
